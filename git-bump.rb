@@ -2,16 +2,16 @@
 class GitBump < Formula
   desc "release to homebrew"
   homepage "https://github.com/s14t284/gitignore-cli"
-  version "1.0.0"
+  version "0.0.1"
   bottle :unneeded
 
   if OS.mac?
-    url "https://github.com/s14t284/gitignore-cli/releases/download/v1.0.0/git-bump_darwin_x86_64.tar.gz"
-    sha256 "4ad0010ea3edb180a28e9804787ce6170099ff92fd327d9b3b19bf2ef4901eae"
+    url "https://github.com/s14t284/gitignore-cli/releases/download/v0.0.1/git-bump_darwin_x86_64.tar.gz"
+    sha256 "b0aa6f2a3c2f244c95960a8e3f5c10b52f5a5807acc33b53e10a70f5a1fcac1f"
   elsif OS.linux?
     if Hardware::CPU.intel?
-      url "https://github.com/s14t284/gitignore-cli/releases/download/v1.0.0/git-bump_linux_x86_64.tar.gz"
-      sha256 "7540ea8593169309ec3c281db6685717a9d64d615d7604e1f4120a978f84485e"
+      url "https://github.com/s14t284/gitignore-cli/releases/download/v0.0.1/git-bump_linux_x86_64.tar.gz"
+      sha256 "3632316cd9a93ab49e2fec1fcf92c585ed7c76829a54514d5d5f1003b55cae2b"
     end
   end
 
