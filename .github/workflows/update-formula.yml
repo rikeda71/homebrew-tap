@@ -1,0 +1,29 @@
+name: Update Formula
+
+on:
+  repository_dispatch:
+    types: [update-formula]
+
+jobs:
+  update:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Update ghostty-pane-splitter formula
+        run: |
+          VERSION="${{ github.event.client_payload.version }}"
+          URL="https://github.com/rikeda71/ghostty-pane-splitter/archive/refs/tags/v${VERSION}.tar.gz"
+          SHA256=$(curl -sL "$URL" | sha256sum | awk '{print $1}')
+
+          sed -i "s|url \".*\"|url \"${URL}\"|" ghostty-pane-splitter.rb
+          sed -i "s|sha256 \".*\"|sha256 \"${SHA256}\"|" ghostty-pane-splitter.rb
+
+      - name: Commit and push
+        run: |
+          VERSION="${{ github.event.client_payload.version }}"
+          git config user.name "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+          git add ghostty-pane-splitter.rb
+          git commit -m "Update ghostty-pane-splitter to v${VERSION}"
+          git push
