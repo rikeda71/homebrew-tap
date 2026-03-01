@@ -1,8 +1,8 @@
 class GhosttyPaneSplitter < Formula
   desc "CLI tool to split panes on Ghostty Terminal"
   homepage "https://github.com/rikeda71/ghostty-pane-splitter"
-  url "https://github.com/rikeda71/ghostty-pane-splitter/archive/refs/tags/v0.1.1.tar.gz"
-  sha256 "96ed4d3035c3d8be43848388920e6f2a4dab0454a70f92f0b788774fce9b60c5"
+  url "https://github.com/rikeda71/ghostty-pane-splitter/archive/refs/tags/v0.2.0.tar.gz"
+  sha256 "97ed29669d748afa303603c6a97d2c587b8099e6db3930822ea9c60f7230df92"
   license "MIT"
 
   depends_on "rust" => :build
