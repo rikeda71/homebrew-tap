@@ -3,7 +3,7 @@ class Cxbridge < Formula
   homepage "https://github.com/rikeda71/cxbridge"
   url "https://github.com/rikeda71/cxbridge/archive/refs/tags/v0.1.1.tar.gz"
   # sha256 is updated automatically by .github/workflows/update-formula.yml on release
-  sha256 "0000000000000000000000000000000000000000000000000000000000000000"
+  sha256 "eee84ea3dadb2f4b134e7eacd4338a9b7e59ac8b44e140eab8f055899bdfa5eb"
   license "MIT"
 
   depends_on "rust" => :build
