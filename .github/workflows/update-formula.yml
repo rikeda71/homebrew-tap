@@ -10,20 +10,38 @@ jobs:
     steps:
       - uses: actions/checkout@v4
 
-      - name: Update ghostty-pane-splitter formula
+      - name: Update formula
         run: |
+          FORMULA="${{ github.event.client_payload.formula }}"
+          REPO="${{ github.event.client_payload.repo }}"
           VERSION="${{ github.event.client_payload.version }}"
-          URL="https://github.com/rikeda71/ghostty-pane-splitter/archive/refs/tags/v${VERSION}.tar.gz"
+
+          # Backward-compatible defaults: if FORMULA is absent, use ghostty-pane-splitter
+          if [ -z "$FORMULA" ]; then
+            FORMULA="ghostty-pane-splitter"
+          fi
+          # If REPO is absent, derive it from the formula name under rikeda71/
+          if [ -z "$REPO" ]; then
+            REPO="rikeda71/${FORMULA}"
+          fi
+
+          URL="https://github.com/${REPO}/archive/refs/tags/v${VERSION}.tar.gz"
           SHA256=$(curl -sL "$URL" | sha256sum | awk '{print $1}')
 
-          sed -i "s|url \".*\"|url \"${URL}\"|" ghostty-pane-splitter.rb
-          sed -i "s|sha256 \".*\"|sha256 \"${SHA256}\"|" ghostty-pane-splitter.rb
+          sed -i "s|url \".*\"|url \"${URL}\"|" "${FORMULA}.rb"
+          sed -i "s|sha256 \".*\"|sha256 \"${SHA256}\"|" "${FORMULA}.rb"
 
       - name: Commit and push
         run: |
+          FORMULA="${{ github.event.client_payload.formula }}"
           VERSION="${{ github.event.client_payload.version }}"
+
+          if [ -z "$FORMULA" ]; then
+            FORMULA="ghostty-pane-splitter"
+          fi
+
           git config user.name "github-actions[bot]"
           git config user.email "github-actions[bot]@users.noreply.github.com"
-          git add ghostty-pane-splitter.rb
-          git commit -m "Update ghostty-pane-splitter to v${VERSION}"
+          git add "${FORMULA}.rb"
+          git diff --staged --quiet || git commit -m "Update ${FORMULA} to v${VERSION}"
           git push
