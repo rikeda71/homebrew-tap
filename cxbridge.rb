@@ -1,9 +1,9 @@
 class Cxbridge < Formula
   desc "Bidirectional config converter between Claude Code and OpenAI Codex CLI"
   homepage "https://github.com/rikeda71/cxbridge"
-  url "https://github.com/rikeda71/cxbridge/archive/refs/tags/v0.3.0.tar.gz"
+  url "https://github.com/rikeda71/cxbridge/archive/refs/tags/v0.3.1.tar.gz"
   # sha256 is updated automatically by .github/workflows/update-formula.yml on release
-  sha256 "bdc6cf9f1299d131694631c7d335a478f98d2d98509dcc9506f36ad5418a43c2"
+  sha256 "9580b0bda818480653b935ad6d88b04023dc3a8e75c5b8229dee328e6839a365"
   license "MIT"
 
   depends_on "rust" => :build
